@@ -1,11 +1,11 @@
 const express = require('express');
-const controllers = require('./controllers')
+const {mainController, allJokesController, randomJokeController, personalJokeController} = require('./controllers')
 
 const app = express();
 
-app.get('/', controllers.mainController);
-app.get('/jokes', controllers.allJokesController);
-app.get('/jokes/random', controllers.randomJokeController);
-app.get('/jokes/random/:first/:name', controllers.personalJokeController);
+app.get('/', mainController);
+app.get('/jokes', allJokesController);
+app.get('/jokes/random', randomJokeController);
+app.get('/jokes/random/:first/:name', personalJokeController);
 
 module.exports = app;

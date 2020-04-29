@@ -1,23 +1,30 @@
-exports.mainController = (req, res) => {
+const mainController = (req, res) => {
   res.send({
     message: 'Welcome to my jokes API!',
   });
-}  
+};
 
-exports.allJokesController = (req, res) => {
+const allJokesController = (req, res) => {
   res.send({
     message: 'This is the all jokes endpoint',
   });
-}
+};
 
-exports.randomJokeController = (req, res) => {
+const randomJokeController = (req, res) => {
   res.send({
     message: 'This is the random joke endpoint',
   });
-}
+};
 
-exports.personalJokeController = (req, res) => {
+const personalJokeController = (req, res) => {
   res.send({
     message: 'This is the random personalised joke endpoint',
   });
-}
+};
+
+module.exports = {
+  mainController,
+  allJokesController,
+  randomJokeController,
+  personalJokeController,
+};
