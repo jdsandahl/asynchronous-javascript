@@ -1,12 +1,20 @@
+const request = require('request');
+
 const mainController = (req, res) => {
   res.send({
     message: 'Welcome to my jokes API!',
   });
 };
 
-const allJokesController = (req, res) => {
-  res.send({
-    message: 'This is the all jokes endpoint',
+const jokesController = (req, res) => {
+  request('https://api.icndb.com/jokes', (error, jokesApiResponse) => {
+    if (error) {
+      console.log(error);
+    }
+
+    const parsedResponse = JSON.parse(jokesApiResponse.body);
+
+    res.send({ jokes: parsedResponse.value });
   });
 };
 
@@ -24,7 +32,7 @@ const personalJokeController = (req, res) => {
 
 module.exports = {
   mainController,
-  allJokesController,
+  jokesController,
   randomJokeController,
   personalJokeController,
 };
