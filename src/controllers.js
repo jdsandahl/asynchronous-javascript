@@ -1,4 +1,5 @@
 const request = require('request');
+const axios = require('axios');
 
 const mainController = (req, res) => {
   res.send({
@@ -18,11 +19,20 @@ const jokesController = (req, res) => {
   });
 };
 
-const randomJokeController = (req, res) => {
-  res.send({
+const randomJokeController = (req, res) => 
+  axios
+    .get('https://api.icndb.com/jokes/random?exclude=[explicit]')
+    .then(response => {
+      res.send({ randomJoke: response.data.value });
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  
+  /*res.send({
     message: 'This is the random joke endpoint',
-  });
-};
+  });*/
+
 
 const personalJokeController = (req, res) => {
   res.send({
