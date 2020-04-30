@@ -1,5 +1,5 @@
 const request = require('request');
-const axios = require('axios');
+const axios = require('axios').default;
 
 const mainController = (req, res) => {
   res.send({
@@ -28,11 +28,6 @@ const randomJokeController = (req, res) =>
     .catch(error => {
       console.log(error);
     });
-  
-  /*res.send({
-    message: 'This is the random joke endpoint',
-  });*/
-
 
 const personalJokeController = (req, res) => {
   res.send({
