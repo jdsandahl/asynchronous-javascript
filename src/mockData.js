@@ -14,7 +14,13 @@ const jokesResponse = {
   ],
 };
 
+const randomJokeResponse = {
+  type: 'success',
+  value: {
+    id: 115,
+    joke: 'i am a random joke',
+    categories: [],
+  },
+};
 
-
-
-module.exports = { jokesResponse };
+module.exports = { jokesResponse, randomJokeResponse };
