@@ -2,16 +2,13 @@
 const request = require('request');
 const axios = require('axios');
 
-const jokesController = (req, res) => {
-  request('https://api.icndb.com/jokes', (error, jokesApiResponse) => {
-    if (error) {
-      return res.status(error.statusCode).send({ error: error.message });
-    }
-
-    const parsedResponse = JSON.parse(jokesApiResponse.body);
-
-    res.send({ jokes: parsedResponse.value });
-  });
+const jokesController = async (req, res) => {
+  try {
+    const response = await axios.get('https://api.icndb.com/jokes',);
+      res.send({ jokes: response.data.value });
+  } catch (error) {
+    res.status(error.statusCode).send({ error: error.message });
+  }
 };
 
 const randomJokeController = (req, res) =>
