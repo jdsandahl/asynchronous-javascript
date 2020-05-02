@@ -5,7 +5,7 @@
 const request = require('supertest');
 const nock = require('nock');
 const app = require('../src/app');
-const { jokesResponse, randomJokeResponse, personalJokeResponse } = require('../src/mockData');
+const { jokesResponse, randomJokeResponse, personalJokeResponse } = require('../testData/mockData');
 
 describe('GET / - Homepage', () => {
   it('should respond with some homepage markup', async () => {
