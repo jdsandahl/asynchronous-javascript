@@ -4,20 +4,21 @@ const axios = require('axios');
 
 const jokesController = async (req, res) => {
   try {
-    const response = await axios.get('https://api.icndb.com/jokes',);
-      res.send({ jokes: response.data.value });
+    const response = await axios.get('https://api.icndb.com/jokes');
+    res.send({ jokes: response.data.value });
   } catch (error) {
     res.status(error.statusCode).send({ error: error.message });
   }
 };
 
-const randomJokeController = (req, res) =>
-  axios
-    .get('https://api.icndb.com/jokes/random?exclude=[explicit]')
-    .then(response => res.send({ randomJoke: response.data.value }))
-    .catch(error => {
-      res.status(error.statusCode).send({ error: error.message })
-    });
+const randomJokeController = async (req, res) => {
+  try {
+    const response = await axios.get('https://api.icndb.com/jokes/random?exclude=[explicit]');
+    res.send({ randomJoke: response.data.value });
+  } catch (error) {
+    res.status(error.statusCode).send({ error: error.message });
+  }
+};
 
 const personalJokeController = async (req, res) => {
   const { first, last } = req.params;
@@ -29,7 +30,7 @@ const personalJokeController = async (req, res) => {
 
     res.send({ personalJoke: response.data.value });
   } catch (error) {
-    return res.status(error.statusCode).send({ error: error.message });
+    res.status(error.statusCode).send({ error: error.message });
   }
 };
 
