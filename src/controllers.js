@@ -1,5 +1,3 @@
-// eslint-disable-next-line
-const request = require('request');
 const axios = require('axios');
 
 const jokesController = async (req, res) => {
