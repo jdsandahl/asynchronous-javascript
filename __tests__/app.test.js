@@ -5,7 +5,7 @@
 const request = require('supertest');
 const nock = require('nock');
 const app = require('../src/app');
-const { jokesResponse, randomJokeResponse } = require('../src/mockData');
+const { jokesResponse, randomJokeResponse, personalJokeResponse } = require('../src/mockData');
 
 describe('GET / - Homepage', () => {
 it('should respond with some homepage markup', done => {
@@ -86,15 +86,8 @@ it('should respond with an error message if something goes wrong', done => {
 });
 
 describe('GET /jokes/personal/:first/:last', () => {
-it('GET /jokes/random/:first/:last should serve one random joke with a personalised name', async () => {
-  const mockResponse = {
-    type: 'success',
-    value: {
-      id: 141,
-      joke: 'random joke about manchester codes',
-      categories: [],
-    },
-  };
+it('should serve one random personalised joke', async () => {
+  const mockResponse = personalJokeResponse;
 
   nock('https://api.icndb.com')
     .get('/jokes/random')
