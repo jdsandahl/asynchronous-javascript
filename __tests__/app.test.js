@@ -40,7 +40,7 @@ describe('GET /jokes', () => {
 });
 
 describe('GET /jokes/random', () => {
-  it('GET /jokes/random should serve one random joke', async () => {
+  it('jokes/random should serve one random joke', async () => {
     const mockResponse = randomJokeResponse;
 
     nock('https://api.icndb.com')
