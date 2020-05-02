@@ -5,6 +5,7 @@
 const request = require('supertest');
 const nock = require('nock');
 const app = require('../src/app');
+const { jokesResponse } = require('../src/mockData');
 
 describe('GET / - Homepage', () => {
 it('should respond with some homepage markup', done => {
@@ -20,21 +21,7 @@ it('should respond with some homepage markup', done => {
 
 describe('GET /jokes', () => {
   it('should serve a list of jokes', done => {
-    const mockResponse = {
-      type: 'success',
-      value: [
-        {
-          id: 1,
-          joke: 'i am a joke',
-          categories: [],
-        },
-        {
-          id: 2,
-          joke: 'i am another joke',
-          categories: [],
-        },
-      ],
-    };
+    const mockResponse = jokesResponse;
 
     nock('https://api.icndb.com')
       .get('/jokes')
@@ -44,18 +31,7 @@ describe('GET /jokes', () => {
       .get('/jokes')
       .then(res => {
         expect(res.statusCode).toEqual(200);
-        expect(res.body.jokes).toEqual([
-          {
-            id: 1,
-            joke: 'i am a joke',
-            categories: [],
-          },
-          {
-            id: 2,
-            joke: 'i am another joke',
-            categories: [],
-          },
-        ]);
+        expect(res.body.jokes).toEqual(mockResponse.value);
         done();
       });
   });
